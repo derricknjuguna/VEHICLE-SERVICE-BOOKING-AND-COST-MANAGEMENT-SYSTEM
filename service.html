@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Service — AutoCare Garage</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">AutoCare Garage<small>Vehicle service booking &amp; cost estimation</small></div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="service.html" class="active">Book Service</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Vehicle service booking form</h1>
+    <p><a href="index.html">&larr; Back to homepage</a></p>
+
+    <form id="bookingForm" class="booking" method="POST" action="process_service.php" novalidate>
+      <div id="formAlert" class="form-alert" role="alert" aria-live="polite"></div>
+
+      <fieldset>
+        <legend>Customer details</legend>
+        <div class="form-row">
+          <div class="field">
+            <label for="customer_name">Customer name</label>
+            <input type="text" id="customer_name" name="customer_name" required maxlength="100" autocomplete="name" placeholder="e.g. Jane Wanjiku">
+            <div class="field-error" id="customer_name-error"></div>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" required inputmode="numeric" maxlength="10" pattern="[0-9]{10}" placeholder="10 digits, e.g. 0712345678">
+            <div class="hint">Exactly 10 digits, numbers only.</div>
+            <div class="field-error" id="phone-error"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" required maxlength="150" autocomplete="email" placeholder="you@example.com">
+          <div class="field-error" id="email-error"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Vehicle details</legend>
+        <div class="form-row">
+          <div class="field">
+            <label for="vehicle_reg">Vehicle registration number</label>
+            <input type="text" id="vehicle_reg" name="vehicle_reg" required maxlength="20" placeholder="e.g. KDA 123B">
+            <div class="field-error" id="vehicle_reg-error"></div>
+          </div>
+          <div class="field">
+            <label for="vehicle_type">Vehicle type</label>
+            <select id="vehicle_type" name="vehicle_type" required>
+              <option value="">-- Select vehicle type --</option>
+              <option value="Saloon Car">Saloon Car</option>
+              <option value="SUV">SUV</option>
+              <option value="Pickup">Pickup</option>
+              <option value="Van">Van</option>
+            </select>
+            <div class="field-error" id="vehicle_type-error"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="vehicle_model">Vehicle model</label>
+            <input type="text" id="vehicle_model" name="vehicle_model" required maxlength="60" placeholder="e.g. Toyota Corolla">
+            <div class="field-error" id="vehicle_model-error"></div>
+          </div>
+          <div class="field">
+            <label for="manufacture_year">Year of manufacture</label>
+            <input type="number" id="manufacture_year" name="manufacture_year" required min="1900" max="2026" step="1" placeholder="e.g. 2018">
+            <div class="field-error" id="manufacture_year-error"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="service_date">Preferred service date</label>
+          <input type="date" id="service_date" name="service_date" required>
+          <div class="hint">Must be today or a future date.</div>
+          <div class="field-error" id="service_date-error"></div>
+        </div>
+        <div id="vehicleInfo" class="info-box hidden" aria-live="polite"></div>
+        <div id="ageWarning" class="warn-box hidden" aria-live="polite"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Required services</legend>
+        <ul class="service-list">
+          <li>
+            <input type="checkbox" id="svc_engine_oil" name="services[]" value="engine_oil">
+            <label for="svc_engine_oil">Engine Oil Change</label>
+            <span class="price">KSh 2,000</span>
+          </li>
+          <li>
+            <input type="checkbox" id="svc_brake" name="services[]" value="brake_inspection">
+            <label for="svc_brake">Brake Inspection</label>
+            <span class="price">KSh 3,000</span>
+          </li>
+          <li>
+            <input type="checkbox" id="svc_alignment" name="services[]" value="wheel_alignment">
+            <label for="svc_alignment">Wheel Alignment</label>
+            <span class="price">KSh 3,500</span>
+          </li>
+          <li>
+            <input type="checkbox" id="svc_diagnosis" name="services[]" value="computer_diagnosis">
+            <label for="svc_diagnosis">Computer Diagnosis</label>
+            <span class="price">KSh 2,500</span>
+          </li>
+          <li>
+            <input type="checkbox" id="svc_full" name="services[]" value="full_service">
+            <label for="svc_full">Full Service</label>
+            <span class="price">KSh 8,000</span>
+          </li>
+          <li>
+            <input type="checkbox" id="svc_pickup" name="services[]" value="pickup_delivery">
+            <label for="svc_pickup">Vehicle Pickup and Delivery <span class="badge">Additional service</span></label>
+            <span class="price">KSh 1,500</span>
+          </li>
+        </ul>
+        <div class="field-error" id="services-error" role="alert"></div>
+      </fieldset>
+
+      <section class="summary" aria-label="Booking summary" aria-live="polite">
+        <h2>Booking summary</h2>
+        <ul id="selectedServices"><li class="empty-note">No services selected yet.</li></ul>
+        <div class="totals">
+          <div>Services selected: <strong id="serviceCount">0</strong></div>
+          <div>Estimated total: <strong id="estimatedTotal">KSh 0</strong></div>
+        </div>
+      </section>
+
+      <div class="btn-row">
+        <button type="submit" id="submitBtn" class="btn">Submit Booking</button>
+        <button type="reset" id="resetBtn" class="btn btn-secondary">Reset Form</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap"><a href="index.html">Back to homepage</a> &middot; Prices are estimates in Kenyan shillings.</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoCare Garage — Vehicle Service Booking</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">AutoCare Garage<small>Vehicle service booking &amp; cost estimation</small></div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="service.html">Book Service</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Book your vehicle service in minutes</h1>
+      <p>
+        AutoCare Garage offers servicing, inspections, and diagnostics with clear,
+        upfront prices in Kenyan shillings. Choose the services you need, see an
+        instant cost estimate, and submit a booking request. Our team confirms
+        your preferred date by phone or email.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href="service.html">Book a Vehicle Service</a>
+        <a class="btn btn-secondary" href="#prices">View price list</a>
+      </div>
+    </section>
+
+    <section class="grid-3" aria-label="How booking works">
+      <div class="card">
+        <h2>1. Choose services</h2>
+        <p>Tick one or more services on the booking form, including pickup and delivery if you need it.</p>
+      </div>
+      <div class="card">
+        <h2>2. See live estimate</h2>
+        <p>The summary shows the selected services, the service count, and the estimated total immediately.</p>
+      </div>
+      <div class="card">
+        <h2>3. Submit booking</h2>
+        <p>Send the form. The server re-validates everything and returns a booking confirmation page.</p>
+      </div>
+    </section>
+
+    <section class="card" id="prices" aria-label="Official service price list">
+      <h2>Official service price list</h2>
+      <p>These are the only prices used by both the browser estimate and the server confirmation.</p>
+      <table class="price-table">
+        <thead>
+          <tr><th>Service</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Engine Oil Change</td><td>KSh 2,000</td></tr>
+          <tr><td>Brake Inspection</td><td>KSh 3,000</td></tr>
+          <tr><td>Wheel Alignment</td><td>KSh 3,500</td></tr>
+          <tr><td>Computer Diagnosis</td><td>KSh 2,500</td></tr>
+          <tr><td>Full Service</td><td>KSh 8,000</td></tr>
+          <tr><td>Vehicle Pickup and Delivery <span class="badge">Additional service</span></td><td>KSh 1,500</td></tr>
+        </tbody>
+      </table>
+      <div class="btn-row">
+        <a class="btn" href="service.html">Start booking now</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">AutoCare Garage &middot; Upfront pricing in Kenyan shillings &middot; Estimates only, not final invoices.</div>
+  </footer>
+</body>
+</html>
